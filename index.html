@@ -82,8 +82,33 @@
 </section>
 
 
+<!-- Hero figure: paper Figure 1 -->
+<section class="section" style="padding-top: 2rem;">
+  <div class="container is-max-desktop">
+    <figure class="image">
+      <img src="static/images/figure1_full.png"
+           alt="Figure 1: two-hop primitive, Cr canonical views, and boundary-hard 2-hop bar chart."
+           style="max-width: 100%; height: auto;">
+    </figure>
+    <p class="figure-caption">
+      <strong>Per-hop evidence selection as the contribution.</strong>
+      <strong>(a)</strong> The minimal nontrivial compositional unit is
+      two-hop: the prefix relation selects an intermediate <em>z</em>, the
+      suffix relation selects the final answer <em>c</em> given <em>z</em>.
+      <strong>(b)</strong> Each spatial relation determines an analytic
+      canonical view <em>C<sub>r</sub></em> (perpendicular bisector for
+      left-right; along-AB axis for front-back; gravity-aligned eye-level
+      for up-down). <strong>(c)</strong> On boundary-hard 2-hop questions
+      (<em>n</em>&nbsp;=&nbsp;319, ScanNet-GS), <em>C<sub>r</sub></em>
+      outperforms eye-level defaults by +16.9&nbsp;pp and fixed three-view
+      max-aggregation by +33&nbsp;pp.
+    </p>
+  </div>
+</section>
+
+
 <!-- Abstract -->
-<section class="section">
+<section class="section" style="padding-top: 0;">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -133,46 +158,7 @@
 </section>
 
 
-<!-- Result 1: Single-hop generalises across relations -->
-<section class="section" style="padding-top: 0;">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">
-      Single-Hop: <em>C<sub>r</sub></em> Generalises Across Relations
-    </h2>
-    <p class="content has-text-justified">
-      We first verify that <em>C<sub>r</sub></em> canonical views are
-      systematically more informative than two natural baselines on
-      single-hop relation verification. Each (<em>a</em>, <em>b</em>) pair
-      is rendered under all view-generating methods (shared per-pair seed)
-      and the same <em>D<sub>r</sub></em> decides the rendered image.
-      <em>C<sub>r</sub></em> beats <em>random-anywhere</em> significantly
-      across all three relations and beats <em>default</em> eye-level on
-      left-right and front-back; the up-down tie is theoretically expected
-      because gravity-axis alignment is already satisfied by an eye-level
-      horizontal view.
-    </p>
-    <figure class="image">
-      <img src="static/images/single_hop_bar.png"
-           alt="Single-hop accuracy across LR/FB/UD for C_r vs default vs random."
-           style="max-width: 100%; height: auto;">
-    </figure>
-    <p class="figure-caption">
-      <strong>Single-hop relation verification.</strong> Cluster-bootstrap
-      mean accuracy on 20 ScanNet-GS scenes &times; 80 pairs/scene, paired
-      across methods. <em>C<sub>r</sub></em> beats random-anywhere on all
-      three relations and default on left-right and front-back.
-    </p>
-    <div class="takeaway">
-      <strong>Takeaway.</strong> Relation-conditioned geometry
-      generalises: the perpendicular-bisector and along-AB-axis priors
-      win where they have geometric content; up-down has no such structural
-      lever beyond gravity alignment, exactly as predicted.
-    </div>
-  </div>
-</section>
-
-
-<!-- Real-scene example -->
+<!-- ScanNet qualitative -->
 <section class="section" style="padding-top: 0;">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">
@@ -199,115 +185,6 @@
       the boundary-hard distractor <em>d</em> (red) are AABB-overlaid in
       the canonical panels but suppressed in the overview to keep the
       scene readable.
-    </p>
-  </div>
-</section>
-
-
-<!-- Result 2: Boundary-hard 2-hop -->
-<section class="section" style="padding-top: 0;">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">
-      Two-Hop Boundary-Hard: <em>C<sub>r</sub></em> Beats All View Baselines
-    </h2>
-    <p class="content has-text-justified">
-      The boundary-hard stratum places three distractors per query in the
-      hop-0 negative-margin band &mdash; geometrically close to the
-      relation boundary on the wrong side. This isolates the regime where
-      <em>C<sub>r</sub></em>'s relation-conditioned geometry should
-      matter. On the expanded run (<em>n</em>&nbsp;=&nbsp;319 queries
-      over 12 of 20 scenes), <em>C<sub>r</sub></em> reaches 0.837 vs
-      0.668 for the strong eye-level default
-      (paired-&Delta;&nbsp;=&nbsp;+0.169, 95% CI [+0.086,&nbsp;+0.240]).
-      A separate <em>n</em>&nbsp;=&nbsp;125 no-leak cohort confirms that
-      even an oracle over three fixed orthographic views (best-of-3 per
-      query) trails <em>C<sub>r</sub></em> by &minus;15.3&nbsp;pp.
-    </p>
-    <figure class="image" style="text-align: center;">
-      <img src="static/images/boundary_hard_bar.png"
-           alt="Boundary-hard 2-hop accuracy: Cr vs default vs 3-view max vs random."
-           style="max-width: 60%; height: auto; display: block; margin: 0 auto;">
-    </figure>
-    <p class="figure-caption">
-      <strong>Boundary-hard 2-hop MCQ accuracy.</strong>
-      <em>C<sub>r</sub></em> reaches 0.837; the strong default eye-level
-      baseline reaches 0.668; fixed 3-orthographic-view max-aggregation
-      collapses to 0.508.
-    </p>
-  </div>
-</section>
-
-
-<!-- Result 3: Mechanism / faithfulness -->
-<section class="section" style="padding-top: 0;">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">
-      Mechanism: Anchor-Sensitive Intermediate Selection
-    </h2>
-    <p class="content has-text-justified">
-      Where does the boundary-hard gain come from? We run two pipeline
-      ablations on the no-leak <em>n</em>&nbsp;=&nbsp;125 cohort.
-      <em>Suffix-only</em> skips the prefix hop entirely; if the chain
-      were shortcut, accuracy should not change. <em>Prefix-shuffle</em>
-      replaces the anchor with a random non-chain object; if the anchor
-      is doing real work, accuracy should drop. Both methods rely on the
-      prefix (suffix-only collapses by 50&ndash;70&nbsp;pp), so neither
-      pipeline is a shortcut. But prefix-shuffle hits
-      <em>C<sub>r</sub></em> nearly four times harder than default
-      (&minus;19&nbsp;pp vs &minus;6&nbsp;pp), indicating that
-      <em>C<sub>r</sub></em>'s hop-0 scores genuinely depend on the
-      anchor &mdash; the relation-conditioned geometry is what makes the
-      prefix matter.
-    </p>
-    <figure class="image">
-      <img src="static/images/faithfulness_bar.png"
-           alt="Faithfulness ablations: main vs suffix-only vs prefix-shuffle for Cr and default."
-           style="max-width: 100%; height: auto;">
-    </figure>
-    <p class="figure-caption">
-      <strong>Two-hop faithfulness ablations.</strong> Both pipelines are
-      genuinely two-hop on this stratum (suffix-only collapses).
-      <em>C<sub>r</sub></em> is much more sensitive to prefix-anchor
-      shuffling than default &mdash; the relation-conditioned view prior
-      makes hop-0 scores depend on the anchor.
-    </p>
-    <div class="takeaway">
-      <strong>Takeaway.</strong> The 16.9&nbsp;pp boundary-hard gain is
-      faithful: it is concentrated in <em>intermediate-selection
-      coverage</em>, not in suffix verification. On a matched diagnostic
-      subset (<em>n</em>&nbsp;=&nbsp;88), <em>C<sub>r</sub></em>'s
-      top-<em>K</em> beam contains the gold intermediate for 74% of
-      queries vs 61% for default; given <em>z</em><sup>*</sup> in beam,
-      default actually scores the suffix slightly better
-      (0.944 vs 0.892).
-    </div>
-  </div>
-</section>
-
-
-<!-- Single-hop intuition -->
-<section class="section" style="padding-top: 0;">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">
-      Why <em>C<sub>r</sub></em> Resolves Single-Hop Ambiguity
-    </h2>
-    <p class="content has-text-justified">
-      The default oblique camera compresses the LR axis: the two entities
-      project to similar image-x, so the discriminator's image-x signal
-      is near-chance. The <em>C<sub>r</sub></em> camera sits on the
-      perpendicular bisector of <em>ab</em>, looking at the midpoint;
-      image-x then cleanly separates <em>a</em> from <em>b</em>, and the
-      <em>same</em> discriminator becomes confident.
-    </p>
-    <figure class="image">
-      <img src="static/images/lr_intuition.png"
-           alt="Top-down schematic showing how C_r resolves left-right ambiguity."
-           style="max-width: 100%; height: auto;">
-    </figure>
-    <p class="figure-caption">
-      <strong>Single-hop intuition for left-right.</strong> Top-down
-      schematics (a, b) and corresponding image-plane projections (c, d)
-      for the same query under two viewpoints.
     </p>
   </div>
 </section>
