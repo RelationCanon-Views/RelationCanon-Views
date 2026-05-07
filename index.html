@@ -82,32 +82,6 @@
 </section>
 
 
-<!-- Hero Figure: paper Figure 1 (overview) -->
-<section class="section" style="padding-top: 1.2rem; padding-bottom: 0;">
-  <div class="container is-max-desktop">
-    <figure class="image">
-      <img src="static/images/hero_figure1.png"
-           alt="Per-hop evidence selection: two-hop primitive, C_r canonical views, boundary-hard 2-hop bar chart."
-           style="max-width: 100%; height: auto;">
-    </figure>
-    <p class="figure-caption">
-      <strong>Per-hop evidence selection as the contribution.</strong>
-      <em>(a)</em> The minimal nontrivial compositional unit is two-hop:
-      a prefix relation selects an intermediate <em>z</em>; the suffix
-      relation selects the final answer <em>c</em> given <em>z</em>.
-      <em>(b)</em> Each spatial relation determines an analytic canonical
-      view <em>C<sub>r</sub></em> &mdash; the perpendicular bisector for
-      left-right, the along-AB axis for front-back, and a gravity-aligned
-      eye-level view for up-down.
-      <em>(c)</em> On boundary-hard 2-hop questions
-      (<em>n</em>&nbsp;=&nbsp;319 over 12 ScanNet-GS scenes),
-      <em>C<sub>r</sub></em> outperforms eye-level defaults by
-      +16.9&nbsp;pp and fixed three-view max-aggregation by +33&nbsp;pp.
-    </p>
-  </div>
-</section>
-
-
 <!-- Abstract -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -334,45 +308,6 @@
       <strong>Single-hop intuition for left-right.</strong> Top-down
       schematics (a, b) and corresponding image-plane projections (c, d)
       for the same query under two viewpoints.
-    </p>
-  </div>
-</section>
-
-
-<!-- ScanNet substrate -->
-<section class="section" style="padding-top: 0;">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">
-      3D Gaussian Splatting Scene Substrate
-    </h2>
-    <p class="content has-text-justified">
-      Our pipeline operates on 3DGS reconstructions of 20 ScanNet scenes,
-      reconstructed via nerfstudio's Splatfacto. Each scene supports the
-      hundreds of view samples per query that our analytic
-      <em>C<sub>r</sub></em> camera placement requires.
-    </p>
-    <div class="columns is-centered">
-      <div class="column is-one-third">
-        <figure class="image">
-          <img src="static/images/scene0050_view0.png" alt="ScanNet scene 0050 view 0">
-        </figure>
-      </div>
-      <div class="column is-one-third">
-        <figure class="image">
-          <img src="static/images/scene0050_view1.png" alt="ScanNet scene 0050 view 1">
-        </figure>
-      </div>
-      <div class="column is-one-third">
-        <figure class="image">
-          <img src="static/images/scene0050_view2.png" alt="ScanNet scene 0050 view 2">
-        </figure>
-      </div>
-    </div>
-    <p class="figure-caption">
-      <strong>Sample 3DGS-rendered views</strong> from one of the 20
-      ScanNet scenes used in the benchmark. The 3DGS substrate lets us
-      query arbitrary camera poses analytically determined by each
-      relation's geometry.
     </p>
   </div>
 </section>
