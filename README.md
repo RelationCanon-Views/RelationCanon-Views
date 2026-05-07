@@ -9,10 +9,12 @@ Scenes* (project alias **RelationCanon-Views**).
 - `index.html` --- the page itself; pulls Bulma, FontAwesome, and Academicons
   from public CDNs.
 - `static/css/style.css` --- minimal custom styles on top of Bulma.
-- `static/images/` --- two figures lifted directly from the paper:
-  `figure1_full.png` (paper Figure 1: two-hop primitive, *C<sub>r</sub>*
-  canonical views, boundary-hard bar chart) and `scannet_chain.png`
-  (appendix ScanNet rendered 2-hop example).
+- `static/images/` --- headline figures: `figure1_full.png` (paper
+  Figure 1 hero), `single_hop_bar.png` (single-hop bar chart),
+  `scannet_chain.png` (appendix ScanNet 2-hop chain example),
+  `boundary_hard_bar.png` (boundary-hard 2-hop bar),
+  `faithfulness_bar.png` (faithfulness ablation bar),
+  `lr_intuition.png` (LR intuition schematic).
 - `.nojekyll` --- forces GitHub Pages to serve files as-is (no Jekyll build).
 
 ## Local preview
